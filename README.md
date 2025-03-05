@@ -19,7 +19,7 @@ graph TD;
 git clone https://github.com/kingofhandsomes/distributed-calculator-go
 ```
 ## Использование в Windows
-1. В терминале Visual Studio Code перейдите в папку calculation_go с помощью команды:
+1. В терминале Visual Studio Code перейдите в папку distributed-calculator-go с помощью команды:
 ```
 cd distributed-calculator-go
 ```
