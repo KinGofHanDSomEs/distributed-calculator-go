@@ -166,7 +166,7 @@ go test internal/transport/orchestrator/orchestrator_test.go
 ```
 go test internal/transport/agent/agent_test.go
 ```
-3. Запуск всех тестов с подробностями:]
+3. Запуск всех тестов с подробностями:
 ```
 go test -v ./...
 ```
