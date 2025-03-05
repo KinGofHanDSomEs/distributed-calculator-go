@@ -34,7 +34,7 @@ func NewOrchestrator() *Orchestrator {
 	if port == "" || err != nil {
 		port = "8080"
 	}
-	if intPort > 9999 {
+	if intPort < 0 || intPort > 9999 {
 		port = "8080"
 	}
 	return &Orchestrator{
@@ -139,7 +139,7 @@ func (o *Orchestrator) AddExpression(w http.ResponseWriter, r *http.Request) {
 
 	rpn, err := ToPolishNotation(expr)
 	if err != nil {
-		log.Printf("it is impossible to create a reverse Polish notation for the expression: %s\n", expr)
+		log.Printf("it is impossible to create a reverse polish notation for the expression: %s\n", expr)
 		http.Error(w, errors.ErrInvalidData.Error(), http.StatusUnprocessableEntity)
 		return
 	}
@@ -149,12 +149,12 @@ func (o *Orchestrator) AddExpression(w http.ResponseWriter, r *http.Request) {
 		num, err := strconv.ParseFloat(oper, 64)
 		if err != nil {
 			if len(stack) < 2 {
-				log.Printf("it is impossible to create a reverse Polish notation for the expression: %s\n", expr)
+				log.Printf("it is impossible to create a reverse polish notation for the expression: %s\n", expr)
 				http.Error(w, errors.ErrInvalidData.Error(), http.StatusUnprocessableEntity)
 				return
 			}
 			if !(oper == "+" || oper == "-" || oper == "*" || oper == "/") {
-				log.Printf("it is impossible to create a reverse Polish notation for the expression: %s\n", expr)
+				log.Printf("it is impossible to create a reverse polish notation for the expression: %s\n", expr)
 				http.Error(w, errors.ErrInvalidData.Error(), http.StatusUnprocessableEntity)
 				return
 			}
@@ -190,7 +190,7 @@ func (o *Orchestrator) AddExpression(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if len(stack) != 1 {
-		log.Printf("it is impossible to create a reverse Polish notation for the expression: %s\n", expr)
+		log.Printf("it is impossible to create a reverse polish notation for the expression: %s\n", expr)
 		http.Error(w, errors.ErrInvalidData.Error(), http.StatusUnprocessableEntity)
 		return
 	}
@@ -324,6 +324,6 @@ func (o *Orchestrator) Run() {
 	r.HandleFunc("/api/v1/expressions", o.GetExpressions).Methods("GET")
 	r.HandleFunc("/api/v1/expressions/{id}", o.GetExpressionByID).Methods("GET")
 	r.HandleFunc("/internal/task", o.TaskHandler).Methods("GET", "POST")
-	http.ListenAndServe(":"+o.Port, r)
 	log.Printf("the server is running on the port: %s\n", o.Port)
+	http.ListenAndServe(":"+o.Port, r)
 }

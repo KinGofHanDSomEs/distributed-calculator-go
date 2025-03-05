@@ -30,7 +30,7 @@ func NewAgent() *Agent {
 	if port == "" || err != nil {
 		port = "8080"
 	}
-	if intPort > 9999 {
+	if intPort < 0 || intPort > 9999 {
 		port = "8080"
 	}
 	ta, err := strconv.Atoi(os.Getenv("TIME_ADDITION_MS"))
@@ -39,19 +39,19 @@ func NewAgent() *Agent {
 	}
 	ts, err := strconv.Atoi(os.Getenv("TIME_SUBTRACTION_MS"))
 	if err != nil || ts < 1 {
-		ta = 1
+		ts = 1
 	}
 	tm, err := strconv.Atoi(os.Getenv("TIME_MULTIPLICATIONS_MS"))
 	if err != nil || tm < 1 {
-		ta = 1
+		tm = 1
 	}
 	td, err := strconv.Atoi(os.Getenv("TIME_DIVISIONS_MS"))
 	if err != nil || td < 1 {
-		ta = 1
+		td = 1
 	}
 	cp, err := strconv.Atoi(os.Getenv("COMPUTING_POWER"))
 	if err != nil || cp < 1 {
-		ta = 1
+		cp = 1
 	}
 	return &Agent{
 		Port:                port,
