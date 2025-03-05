@@ -149,6 +149,7 @@ curl --location --request POST 'localhost:8080/internal/task' --header 'Content-
 invalid data
 ```
 ## Запуск тестов
+Для запуска тестов введите в консоль visual studio code следующие команды:
 1. Запуск тестов для orchestrator (сервера):
 ```
 go test internal/transport/orchestrator/orchestrator_test.go
