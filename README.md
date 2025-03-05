@@ -148,5 +148,18 @@ curl --location --request POST 'localhost:8080/internal/task' --header 'Content-
 ```
 invalid data
 ```
+## Запуск тестов
+1. Запуск тестов для orchestrator (сервера):
+```
+go test internal/transport/orchestrator/orchestrator_test.go
+```
+2. Запуск тестов для agent (агента):
+```
+go test internal/transport/agent/agent_test.go
+```
+3. Запуск всех тестов с подробностями:]
+```
+go test -v ./...
+```
 ## Обратная связь
 Телеграмм: @KinGofHanDSomEs
