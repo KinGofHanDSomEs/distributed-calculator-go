@@ -98,15 +98,15 @@ curl --location --request GET 'localhost:8080/api/v1/expressions/1'
 ```
 curl --location --request POST 'localhost:8080/api/v1/expressions/1'
 ```
-- Неверный id выражения (на сервере нет выражения с таким id), статус код 404:
+- Неверный id выражения (на сервере нет выражения с id - 99), статус код 404:
 ```
-curl --location --request GET 'localhost:8080/api/v1/expressions/2'
+curl --location --request GET 'localhost:8080/api/v1/expressions/99'
 ```
 Результат запроса:
 ```
 there is no such expression
 ```
-### Работа с задачами
+## Работа с задачами
 Следующие запросы предназначены ТОЛЬКО для агентов, поэтому их не стоит вызывать.
 1. Примеры взятия задачи для решения:
 - Удачный:
@@ -132,9 +132,9 @@ there is no such expression
 curl --location --request POST 'localhost:8080/internal/task' --header 'Content-Type: application/json' --data '{"id":1,"result":4,"operation_time":1}'
 ```
 - Неудачные:
-- - На сервере нет задачи с таким id (если на сервере нет задачи с id - 2), статус код 404:
+- - На сервере нет задачи с таким id (если на сервере нет задачи с id - 99), статус код 404:
 ```
-curl --location --request POST 'localhost:8080/internal/task' --header 'Content-Type: application/json' --data '{"id":2,"result":4,"operation_time":1}'
+curl --location --request POST 'localhost:8080/internal/task' --header 'Content-Type: application/json' --data '{"id":99,"result":4,"operation_time":1}'
 ```
 Результат запроса:
 ```
@@ -148,3 +148,5 @@ curl --location --request POST 'localhost:8080/internal/task' --header 'Content-
 ```
 invalid data
 ```
+## Обратная связь
+Телеграмм: @KinGofHanDSomEs
